@@ -9,4 +9,5 @@ import java.util.Map;
 @Repository
 public interface BasicUsersMapper {
     int insertuser(Map<String,Object> map);
+    List<Map<String,Object>> selectuser(Map<String,Object> map)
 }

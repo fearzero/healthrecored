@@ -13,4 +13,9 @@ public class BasicService {
    public int insertuser(Map<String,Object> map){
         return basicUsersMapper.insertuser(map);
     }
+    
+    public List<Map<String,Object>> selectuser(Map<String,Object> map){
+        return basicUsersMapper.selectuser(map);
+    
+    }
 }

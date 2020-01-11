@@ -44,4 +44,6 @@
             </if>
         </trim>
     </insert>
+     <select id="insertuser" parameterType="java.util.HashMap" resultType= "java.util.HashMap">	select。
+     </select>
 </mapper>
