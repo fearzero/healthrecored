@@ -1,5 +1,7 @@
 package com.fear.healthrecord.myunitls;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class NameGen {
@@ -64,4 +66,5 @@ public class NameGen {
 
         return name.toString();
     }
+
 }

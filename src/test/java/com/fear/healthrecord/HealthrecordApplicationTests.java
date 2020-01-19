@@ -40,5 +40,34 @@ class HealthrecordApplicationTests {
         }
 
     }
+    @Test
+    void  insert(){
+        Map<String,Object> map1=new HashMap<>();
+        map1.put("index_id","K000007");
+        map1.put("info_mperson","胡机将");
+        Random random=new Random();
+        for (int j=1;j<24;j++)
+        {
+            map1.put("basic_id",j);
+            int i=0;
+            while (true) {
+//                 i = (int) (Math.random() * 9000) + 1000;
+                i=random.nextInt(120);
+                if(i>50&&i<4000)
+                    break;
+            }
+           map1.put("info_result",i);
+      System.out.println(map1);
+        service.insertuserinfo(map1);}
+    }
+    @Test
+    void testselect(){
+        Map<String,Object> map1=new HashMap<>();
+        map1.put("basic_id",2);
+        System.out.println(map1);
+        List<Map<String,Object>> map2=new ArrayList<>();
+      service.deleteuser(map1);
 
+
+    }
 }
