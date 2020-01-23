@@ -1,6 +1,7 @@
-package com.fear.healthrecord.service;
+package com.fear.healthrecord.service.impl;
 
 import com.fear.healthrecord.mapper.BasicUsersMapper;
+import com.fear.healthrecord.service.BasicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

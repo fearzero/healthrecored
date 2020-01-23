@@ -1,7 +1,7 @@
 package com.fear.healthrecord;
 
 import com.fear.healthrecord.myunitls.NameGen;
-import com.fear.healthrecord.service.BasicServiceImpl;
+import com.fear.healthrecord.service.impl.BasicServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -67,7 +67,5 @@ class HealthrecordApplicationTests {
         System.out.println(map1);
         List<Map<String,Object>> map2=new ArrayList<>();
       service.deleteuser(map1);
-
-
     }
 }
