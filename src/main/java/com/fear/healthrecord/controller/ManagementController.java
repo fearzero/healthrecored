@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping
-public class BasicController {
+@RequestMapping(value = "/management")
+public class ManagementController {
     @RequestMapping("/test")
     public @ResponseBody String doPostTwo(String name, int age){
         return name+"已经"+age+"岁了";

@@ -1,7 +1,7 @@
 package com.fear.healthrecord;
 
 import com.fear.healthrecord.myunitls.NameGen;
-import com.fear.healthrecord.service.impl.BasicServiceImpl;
+import com.fear.healthrecord.service.impl.ManagementServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +12,7 @@ import java.util.*;
 @SpringBootTest
 class HealthrecordApplicationTests {
      @Autowired
-     BasicServiceImpl service;
+     ManagementServiceImpl service;
     @Test
     void contextLoads() {
         Map<String,Object> map=new HashMap<>();

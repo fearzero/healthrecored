@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.fear.healthrecord.mapper.BasicUsersMapper" >
+<mapper namespace="com.fear.healthrecord.mapper.ManagementMapper" >
     <insert id="insertuser" parameterType="java.util.HashMap" >
         insert into data_basic_user
         <trim prefix="(" suffix=")" suffixOverrides="," >

@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Mapper
 @Repository
-public interface BasicUsersMapper {
+public interface ManagementMapper {
     int insertuser(Map<String,Object> map);
     int insertuserinfo(Map<String,Object> map);
     int upadtauser(Map<String,Object> map);
