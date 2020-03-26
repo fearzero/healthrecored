@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.fear.healthrecord.service.SystemUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.Mapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,12 +19,13 @@ import java.util.Map;
 public class SystemUserController {
     @Autowired
     SystemUserService service;
+    @CrossOrigin
     @RequestMapping("/register")
     public @ResponseBody Map<String, Object> register(@RequestBody String json){
         Map<String, Object> mp = JSON.parseObject(json);
         Map<String, Object> map=new HashMap<>();
-        map.put("sys_user_name",mp.get("sys_user_name"));
-        map.put("sys_user_password",mp.get("sys_user_password"));
+        map.put("sys_user_name",mp.get("user_name"));
+        map.put("sys_user_password",mp.get("user_password"));
         map.put("sys_rank",1);
         map.put("sys_status",1);
        int f= service.registeruser(map);
@@ -40,13 +41,14 @@ public class SystemUserController {
         }
         return re;
     }
+    @CrossOrigin
     @RequestMapping("/login")
    public @ResponseBody Map<String, Object>  login (@RequestBody  String json, HttpServletRequest request)
     {
         Map<String, Object> mp = JSON.parseObject(json);
         Map<String, Object> map=new HashMap<>();
-        map.put("sys_user_name",mp.get("sys_user_name"));
-        map.put("sys_user_password",mp.get("sys_user_password"));
+        map.put("sys_user_name",mp.get("user_name"));
+        map.put("sys_user_password",mp.get("user_password"));
         Map<String, Object> result=new HashMap<>();
         result=service.loginuser(map);
         HttpSession session = request.getSession();
@@ -61,7 +63,7 @@ public class SystemUserController {
         }
         else
         {
-            re.put("code", "100");
+            re.put("code", "300");
             re.put("message", "mession failed");
         }
         return re;

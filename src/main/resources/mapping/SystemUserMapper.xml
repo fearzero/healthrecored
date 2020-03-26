@@ -17,6 +17,7 @@
                 sys_status,
             </if>
 
+
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="sys_user_name != null" >
