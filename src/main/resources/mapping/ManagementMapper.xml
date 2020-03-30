@@ -52,60 +52,79 @@
     </insert>
 
     <insert id="insertuserinfo" parameterType="java.util.HashMap" >
-        insert into data_health_info
+        insert into data_health_info_basic
         <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="basic_id != null" >
-                basic_id,
+            <if test="user_id != null" >
+                user_id,
             </if>
-            <if test="index_id != null" >
-                index_id,
+            <if test="count != null" >
+                count,
             </if>
-            <if test="info_result != null" >
-                info_result,
+            <if test="height != null" >
+                height,
             </if>
 
-            <if test="info_mperson != null" >
-                info_mperson,
+            <if test="weight != null" >
+                weight,
+            </if>
+            <if test="lung_capacity != null" >
+                lung_capacity,
+            </if>
+            <if test="s_blood_pressure != null" >
+                s_blood_pressure,
+            </if>
+            <if test="d_blood_pressure != null" >
+                d_blood_pressure,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="basic_id != null" >
-                #{basic_id,jdbcType=INTEGER},
+            <if test="user_id != null" >
+                #{user_id,jdbcType=VARCHAR},
             </if>
-            <if test="index_id != null" >
-                #{index_id,jdbcType=VARCHAR},
+            <if test="count != null" >
+                #{count,jdbcType=VARCHAR},
             </if>
-            <if test="info_result != null" >
-                #{info_result,jdbcType=DOUBLE},
+            <if test="height != null" >
+                #{height,jdbcType=DOUBLE},
             </if>
-            <if test="info_mperson != null" >
-                #{info_mperson,jdbcType=VARCHAR},
+            <if test="weight != null" >
+                #{weight,jdbcType=VARCHAR},
+            </if>
+            <if test="lung_capacity != null" >
+                #{lung_capacity,jdbcType=VARCHAR},
+            </if>
+            <if test="s_blood_pressure != null" >
+                #{s_blood_pressure,jdbcType=VARCHAR},
+            </if>
+            <if test="d_blood_pressure != null" >
+                #{d_blood_pressure,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
     <update id="upadtauser" parameterType="java.util.HashMap">
         update data_basic_user set
         <trim suffixOverrides="," >
-            <if test="basic_name != null" >
-                basic_name,
+            <if test="basic_name != null and basic_name !='' " >
+                basic_name=#{basic_name,jdbcType=VARCHAR},
             </if>
-            <if test="basic_age != null" >
-                basic_age,
+            <if test="basic_age != null and basic_age !='' " >
+                basic_age=#{basic_age,jdbcType=VARCHAR},
             </if>
-            <if test="identity_id != null" >
-                identity_id,
+            <if test="identity_id != null and identity_id !='' " >
+                identity_id=#{identity_id,jdbcType=VARCHAR},
             </if>
-            <if test="basic_contact != null" >
-                basic_contact,
+            <if test="basic_contact != null and basic_contact !='' " >
+                basic_contact=#{basic_contact,jdbcType=VARCHAR},
             </if>
-            <if test="basic_birthday != null" >
-                basic_birthday,
+            <if test="basic_birthday != null and basic_birthday !='' " >
+                basic_birthday=#{basic_birthday,jdbcType=VARCHAR},
             </if>
-            <if test="basic_address != null" >
-                basic_address,
+            <if test="basic_address != null and basic_address !='' " >
+                basic_address=#{basic_address,jdbcType=VARCHAR},
 
             </if>
         </trim>
+
         where 1=1
         <if test="basic_id !=null">
             and basic_id= #{basic_id,jdbcType=INTEGER}

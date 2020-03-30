@@ -39,13 +39,36 @@ public class ManagementServiceImpl implements BasicService {
     }
 
     @Override
-    public int insertuserinfo(Map<String, Object> map) {
-        return managementMapper.insertuserinfo(map);
+    public Map<String,Object> insertuserinfo(Map<String, Object> map) {
+        Map<String,Object> result =new HashMap<>();
+       try {
+           managementMapper.insertuserinfo(map);
+           result.put("code","200");
+           result.put("message","成功");
+       }catch (Exception e){
+           result.put("code","300");
+           result.put("message","失败");
+       }
+
+       return result;
+
     }
 
     @Override
-    public int upadtauser(Map<String, Object> map) {
-        return managementMapper.upadtauser(map);
+    public Map<String, Object> upadtauser(Map<String, Object> map) {
+       int basic_id=Integer.parseInt(map.get("user_id").toString());
+       map.put("basic_id",basic_id);
+        Map<String,Object> result =new HashMap<>();
+        try {
+            managementMapper.upadtauser(map);
+            result.put("code","200");
+            result.put("message","成功");
+        }catch (Exception e){
+            result.put("code","300");
+            result.put("message","失败");
+        }
+
+        return result;
     }
 
     @Override

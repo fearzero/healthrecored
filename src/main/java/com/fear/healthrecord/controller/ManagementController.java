@@ -28,13 +28,13 @@ public class ManagementController {
 
     @RequestMapping("/insertuserinfo")
     @CrossOrigin
-    public @ResponseBody int insertuserinfo(@RequestBody String json){
+    public @ResponseBody Object insertuserinfo(@RequestBody String json){
         Map<String, Object> map = JSON.parseObject(json);
         return basicService.insertuserinfo(map);
     }
     @CrossOrigin
     @RequestMapping("/upadtauser")
-    public @ResponseBody int upadtauser(@RequestBody String json){
+    public @ResponseBody Object upadtauser(@RequestBody String json){
         Map<String, Object> map = JSON.parseObject(json);
         return basicService.upadtauser(map);
     }
