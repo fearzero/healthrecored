@@ -9,9 +9,10 @@ public interface BasicService {
     Map<String,Object> insertuser(Map<String,Object> map);
     Map<String,Object> insertuserinfo(Map<String,Object> map);
     Map<String,Object> upadtauser(Map<String,Object> map);
-    int upadtauserinfo(Map<String,Object> map);
+    Map<String,Object> upadtauserinfo(Map<String,Object> map);
      Map<String,Object> selectuser(Map<String,Object> map);
     Map<String,Object> selectuserlist(Map<String,Object> map);
     Map<String,Object> selectuserinfo(Map<String,Object> map);
-    int deleteuser(Map<String,Object> map);
+    Map<String,Object> deleteuser(Map<String,Object> map);
+    Map<String,Object> deleteuserinfo(Map<String,Object> map);
 }

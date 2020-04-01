@@ -126,27 +126,36 @@
         </trim>
 
         where 1=1
-        <if test="basic_id !=null">
+        <if test="basic_id !=null and basic_id !='' ">
             and basic_id= #{basic_id,jdbcType=INTEGER}
         </if>
 
     </update>
     <update id="upadtauserinfo" parameterType="java.util.HashMap">
-        update data_health_info set
+        update data_health_info_basic set
         <trim suffixOverrides="," >
-        <if test="info_result != null" >
-            info_result= #{info_result,jdbcType=DOUBLE},
+        <if test="height != null and height !='' " >
+            height= #{height,jdbcType=VARCHAR},
         </if>
-        <if test="info_mperson != null" >
-            info_mperson= #{info_mperson,jdbcType=VARCHAR},
+        <if test="weight != null and weight !='' " >
+            weight= #{weight,jdbcType=VARCHAR},
         </if>
+         <if test="lung_capacity != null and lung_capacity !='' " >
+                lung_capacity= #{lung_capacity,jdbcType=VARCHAR},
+         </if>
+         <if test="s_blood_pressure != null and s_blood_pressure !='' " >
+                s_blood_pressure= #{s_blood_pressure,jdbcType=VARCHAR},
+         </if>
+         <if test="d_blood_pressure != null and d_blood_pressure !='' " >
+                d_blood_pressure= #{d_blood_pressure,jdbcType=VARCHAR},
+         </if>
         </trim>
         where 1=1
-        <if test="basic_id !=null">
-           and basic_id= #{basic_id,jdbcType=INTEGER}
+        <if test="user_id !=null and user_id !='' ">
+           and user_id= #{user_id,jdbcType=VARCHAR}
         </if>
-        <if test="index_id !=null">
-            and index_id= #{index_id,jdbcType=VARCHAR}
+        <if test="count!=null and count !='' ">
+            and count= #{count,jdbcType=VARCHAR}
         </if>
 
     </update>
@@ -165,29 +174,32 @@
     </select>
     <select id="selectuserinfo" parameterType="java.util.HashMap" resultType= "java.util.HashMap">
         SELECT
+        i.info_id,
         u.basic_name,
-        x.index_name,
-        i.info_result,
-        x.range_low,
-        x.range_high,
-        x.index_unit,
-        DATE_FORMAT(i.info_mtime,'%Y-%m-%d%H:%i:%s') as info_mtime,
-        i.info_mperson
+        i.count,
+        i.height,
+        i.weight,
+        i.lung_capacity,
+        i.s_blood_pressure,
+        i.d_blood_pressure
         FROM
-        data_health_info i
-        LEFT JOIN data_basic_user u ON i.basic_id = u.basic_id
-        LEFT JOIN data_health_index x ON i.index_id = x.index_id
+        data_health_info_basic i,
+        data_basic_user u
         WHERE
         1 = 1
-        <if test="basic_id !=null">
-            and u.basic_id= #{basic_id,jdbcType=INTEGER}
-        </if>
+        and u.basic_id= #{basic_id,jdbcType=INTEGER}
+        and i. user_id=#{user_id,jdbcType=VARCHAR}
     </select>
     <delete id="deleteuser" parameterType="java.util.HashMap">
-        delete u.*,i.* from data_basic_user u,data_health_info i
+        delete from data_basic_user
         where
-        u.basic_id=#{basic_id,jdbcType=INTEGER}
-        and i.basic_id = u.basic_id
+        basic_id=#{basic_id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteuserinfo" parameterType="java.util.HashMap">
+
+        delete from data_health_info_user
+        where
+        user_id=#{user_id,jdbcType=VARCHAR}
 
     </delete>
 </mapper>

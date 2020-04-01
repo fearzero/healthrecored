@@ -39,10 +39,22 @@ public class ManagementController {
         return basicService.upadtauser(map);
     }
     @CrossOrigin
+    @RequestMapping("/upadtauserinfo")
+    public @ResponseBody Object upadtauserinfo(@RequestBody String json){
+        Map<String, Object> map = JSON.parseObject(json);
+        return basicService.upadtauserinfo(map);
+    }
+    @CrossOrigin
     @RequestMapping("/deleteuser")
-    public @ResponseBody int deleteuser(@RequestBody String json){
+    public @ResponseBody Object deleteuser(@RequestBody String json){
         Map<String, Object> map = JSON.parseObject(json);
         return basicService.deleteuser(map);
+    }
+    @CrossOrigin
+    @RequestMapping("/deleteuserinfo")
+    public @ResponseBody Object deleteuserinfo(@RequestBody String json){
+        Map<String, Object> map = JSON.parseObject(json);
+        return basicService.deleteuserinfo(map);
     }
     @CrossOrigin
     @RequestMapping("/selectuser")

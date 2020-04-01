@@ -72,15 +72,31 @@ public class ManagementServiceImpl implements BasicService {
     }
 
     @Override
-    public int upadtauserinfo(Map<String, Object> map) {
-        return managementMapper.upadtauserinfo(map);
+    public Map<String, Object> upadtauserinfo(Map<String, Object> map) {
+        Map<String,Object> result =new HashMap<>();
+        try {
+            if(managementMapper.upadtauserinfo(map)==1)
+            {result.put("code","200");
+            result.put("message","成功");}
+            else {
+                result.put("code","300");
+                result.put("message","失败");
+            }
+        }catch (Exception e){
+            result.put("code","300");
+            result.put("message","失败");
+        }
+
+        return result;
+
     }
 
     @Override
     public Map<String, Object> selectuser(Map<String, Object> map) {
 
-
-        List<Map<String,Object>> list=managementMapper.selectuser(map);
+        int basic_id=Integer.parseInt(map.get("user_id").toString());
+        map.put("basic_id",basic_id);
+        Map<String,Object> list=managementMapper.selectuser(map);
         Map<String,Object> resultMap=new HashMap<>();
         resultMap.put("CODE","200");
         resultMap.put("MESSAGE","成功");
@@ -119,7 +135,36 @@ public class ManagementServiceImpl implements BasicService {
     }
 
     @Override
-    public int deleteuser(Map<String, Object> map) {
-        return managementMapper.deleteuser(map);
+    public Map<String, Object> deleteuser(Map<String, Object> map) {
+        int basic_id=Integer.parseInt(map.get("user_id").toString());
+        map.put("basic_id",basic_id);
+        Map<String,Object> result =new HashMap<>();
+        try {
+            managementMapper.deleteuser(map);
+            managementMapper.deleteuserinfo(map);
+            result.put("code","200");
+            result.put("message","成功");
+        }catch (Exception e){
+            result.put("code","300");
+            result.put("message","失败");
+        }
+
+        return result;
+
+    }
+
+    @Override
+    public Map<String, Object> deleteuserinfo(Map<String, Object> map) {
+        Map<String,Object> result =new HashMap<>();
+        try {
+            managementMapper.deleteuserinfo(map);
+            result.put("code","200");
+            result.put("message","成功");
+        }catch (Exception e){
+            result.put("code","300");
+            result.put("message","失败");
+        }
+
+        return result;
     }
 }
