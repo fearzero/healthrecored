@@ -123,7 +123,8 @@ public class ManagementServiceImpl implements BasicService {
 
     @Override
     public Map<String, Object> selectuserinfo(Map<String, Object> map) {
-
+        int basic_id=Integer.parseInt(map.get("user_id").toString());
+        map.put("basic_id",basic_id);
         Map<String,Object> dataMap=managementMapper.selectuserinfo(map);
 
         Map<String,Object> resultMap=new HashMap<>();
@@ -141,7 +142,12 @@ public class ManagementServiceImpl implements BasicService {
         Map<String,Object> result =new HashMap<>();
         try {
             managementMapper.deleteuser(map);
-            managementMapper.deleteuserinfo(map);
+            try {
+                managementMapper.deleteuserinfo(map);
+            }
+           catch (Exception e){
+
+           }
             result.put("code","200");
             result.put("message","成功");
         }catch (Exception e){
