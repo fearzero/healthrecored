@@ -124,12 +124,12 @@ public class ManagementServiceImpl implements BasicService {
     @Override
     public Map<String, Object> selectuserinfo(Map<String, Object> map) {
 
-        List<Map<String,Object>> list=managementMapper.selectuserinfo(map);
+        Map<String,Object> dataMap=managementMapper.selectuserinfo(map);
 
         Map<String,Object> resultMap=new HashMap<>();
         resultMap.put("CODE","200");
         resultMap.put("MESSAGE","成功");
-        resultMap.put("DATA",list);
+        resultMap.put("DATA",dataMap);
         return resultMap;
 
     }
