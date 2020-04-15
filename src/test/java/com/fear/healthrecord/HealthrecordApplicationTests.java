@@ -26,6 +26,9 @@ class HealthrecordApplicationTests {
             map.put("identity_id", String.valueOf(identity_id));
             int basic_contact = (int) ((Math.random() * 9 + 1) * 100000);
             map.put("basic_contact", String.valueOf(basic_contact));
+            map.put("basic_swx","男");
+            map.put("basic_job","工作");
+            map.put("is_marriage","是");
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Calendar c = Calendar.getInstance();
             Date now = c.getTime();

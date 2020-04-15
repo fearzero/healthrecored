@@ -37,20 +37,23 @@ public class ManagementServiceImpl implements BasicService {
        userIdCreate.upadteUserId(updateuseridMap);
        try {
            if(managementMapper.insertuser(map)==1)
-           {  re.put("code", "200");
-               re.put("message", "success");
+           {
+               managementMapper.insertuserinfo(updateuseridMap);
+               managementMapper.insertdisease(updateuseridMap);
+               re.put("CODE", "200");
+               re.put("MESSAGE", "success");
            }
            else
            {
-               re.put("code", "100");
-               re.put("message", "mession failed");
+               re.put("CODE", "100");
+               re.put("MESSAGE", "mession failed");
            }
            return re;
 
        }catch (Exception e){
            e.printStackTrace();
-           re.put("code", "100");
-           re.put("message", "mession failed");
+           re.put("CODE", "100");
+           re.put("MESSAGE", "mession failed");
            return re;
        }
 
@@ -61,11 +64,11 @@ public class ManagementServiceImpl implements BasicService {
         Map<String,Object> result =new HashMap<>();
        try {
            managementMapper.insertuserinfo(map);
-           result.put("code","200");
-           result.put("message","成功");
+           result.put("CODE","200");
+           result.put("MESSAGE","成功");
        }catch (Exception e){
-           result.put("code","300");
-           result.put("message","失败");
+           result.put("CODE","300");
+           result.put("MESSAGE","失败");
        }
 
        return result;
@@ -79,11 +82,11 @@ public class ManagementServiceImpl implements BasicService {
         Map<String,Object> result =new HashMap<>();
         try {
             managementMapper.upadtauser(map);
-            result.put("code","200");
-            result.put("message","成功");
+            result.put("CODE","200");
+            result.put("MESSAGE","成功");
         }catch (Exception e){
-            result.put("code","300");
-            result.put("message","失败");
+            result.put("CODE","300");
+            result.put("MESSAGE","失败");
         }
 
         return result;
@@ -94,15 +97,15 @@ public class ManagementServiceImpl implements BasicService {
         Map<String,Object> result =new HashMap<>();
         try {
             if(managementMapper.upadtauserinfo(map)==1)
-            {result.put("code","200");
-            result.put("message","成功");}
+            {result.put("CODE","200");
+            result.put("MESSAGE","成功");}
             else {
-                result.put("code","300");
-                result.put("message","失败");
+                result.put("CODE","300");
+                result.put("MESSAGE","失败");
             }
         }catch (Exception e){
-            result.put("code","300");
-            result.put("message","失败");
+            result.put("CODE","300");
+            result.put("MESSAGE","失败");
         }
 
         return result;

@@ -219,7 +219,7 @@
         data_basic_user u
         WHERE
         1 = 1
-        and u.basic_id= #{basic_id,jdbcType=INTEGER}
+        and u.user_id= #{user_id,jdbcType=INTEGER}
         and i. user_id=#{user_id,jdbcType=VARCHAR}
     </select>
     <delete id="deleteuser" parameterType="java.util.HashMap">
