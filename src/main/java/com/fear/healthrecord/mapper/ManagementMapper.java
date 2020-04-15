@@ -22,4 +22,5 @@ public interface ManagementMapper {
     int upadtedisease(Map<String,Object> map);
     int deletedisease(Map<String,Object> map);
     Map<String,Object> selectudisease(Map<String,Object> map);
+
 }

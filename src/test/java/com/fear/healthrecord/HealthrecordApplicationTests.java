@@ -22,11 +22,11 @@ class HealthrecordApplicationTests {
             map.put("basic_name", name);
             int age = random.nextInt(70);
             map.put("basic_age", String.valueOf(age));
-            int identity_id = (int) ((Math.random() * 9 + 1) * 10000000);
-            map.put("identity_id", String.valueOf(identity_id));
+            String identity_id= UUID.randomUUID().toString().replace("-", "").substring(0,20);
+            map.put("identity_id", identity_id);
             int basic_contact = (int) ((Math.random() * 9 + 1) * 100000);
             map.put("basic_contact", String.valueOf(basic_contact));
-            map.put("basic_swx","男");
+            map.put("basic_sex","男");
             map.put("basic_job","工作");
             map.put("is_marriage","是");
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

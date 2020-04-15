@@ -183,7 +183,17 @@
 
     </update>
      <select id="selectuser" parameterType="java.util.HashMap" resultType= "java.util.HashMap">
-	select * from data_basic_user
+	select basic_name,
+	    basic_age,
+         basic_sex,
+         identity_id,
+         basic_contact,
+         basic_birthday,
+         basic_address,
+         basic_job,
+         is_marriage,
+         DATE_FORMAT(basic_time,'%Y-%m-%d%H:%i:%s') as basic_time
+	 from data_basic_user
 	where 1=1
 	<if test="user_id !=null">
        and user_id= #{user_id,jdbcType=VARCHAR}
@@ -316,6 +326,7 @@
 
 
     </select>
+
 
 
 </mapper>
