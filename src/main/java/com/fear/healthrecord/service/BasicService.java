@@ -15,4 +15,8 @@ public interface BasicService {
     Map<String,Object> selectuserinfo(Map<String,Object> map);
     Map<String,Object> deleteuser(Map<String,Object> map);
     Map<String,Object> deleteuserinfo(Map<String,Object> map);
+    Map<String,Object> insertdisease(Map<String,Object> map);
+    Map<String,Object> upadtedisease(Map<String,Object> map);
+    Map<String,Object> deletedisease(Map<String,Object> map);
+    Map<String,Object> selectudisease(Map<String,Object> map);
 }

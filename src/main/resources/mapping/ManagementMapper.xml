@@ -4,6 +4,9 @@
     <insert id="insertuser" parameterType="java.util.HashMap" >
         insert into data_basic_user
         <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="user_id != null" >
+                user_id,
+            </if>
             <if test="basic_name != null" >
                 basic_name,
             </if>
@@ -25,8 +28,17 @@
             <if test="basic_address != null" >
                 basic_address,
             </if>
+            <if test="basic_job != null" >
+                basic_job,
+            </if>
+            <if test="is_marriage != null" >
+                is_marriage,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="user_id != null" >
+                #{user_id,jdbcType=VARCHAR},
+            </if>
             <if test="basic_name != null" >
                 #{basic_name,jdbcType=VARCHAR},
             </if>
@@ -47,6 +59,12 @@
             </if>
             <if test="basic_address != null" >
                 #{basic_address,jdbcType=VARCHAR},
+            </if>
+            <if test="basic_job != null" >
+                #{basic_job,jdbcType=VARCHAR},
+            </if>
+            <if test="is_marriage != null" >
+                #{is_marriage,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -121,7 +139,12 @@
             </if>
             <if test="basic_address != null and basic_address !='' " >
                 basic_address=#{basic_address,jdbcType=VARCHAR},
-
+            </if>
+            <if test="basic_job != null and basic_birthday !='' " >
+                basic_job=#{basic_job,jdbcType=VARCHAR},
+            </if>
+            <if test="is_marriage != null and basic_address !='' " >
+            is_marriage=#{is_marriage,jdbcType=VARCHAR},
             </if>
         </trim>
 
@@ -171,6 +194,15 @@
     <select id="selectuserlist" parameterType="java.util.HashMap" resultType= "java.util.HashMap">
         select basic_id,basic_name from data_basic_user
         where 1=1
+        <if test="basic_name !=null and basic_name !='' ">
+            and basic_name= #{basic_name,jdbcType=VARCHAR}
+        </if>
+        <if test="basic_sex !=null and basic_sex !='' ">
+            and basic_sex= #{basic_sex,jdbcType=VARCHAR}
+        </if>
+        <if test="basic_age !=null and basic_age !='' ">
+            and basic_age= #{basic_age,jdbcType=VARCHAR}
+        </if>
     </select>
     <select id="selectuserinfo" parameterType="java.util.HashMap" resultType= "java.util.HashMap">
         SELECT
@@ -202,4 +234,88 @@
         user_id=#{user_id,jdbcType=VARCHAR}
 
     </delete>
+
+
+    <insert id="insertdisease" parameterType="java.util.HashMap" >
+        insert into data_health_info_disease
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="user_id != null" >
+                user_id,
+            </if>
+            <if test="count != null" >
+                count,
+            </if>
+            <if test="d_type != null" >
+                d_type,
+            </if>
+            <if test="d_name != null" >
+                d_name,
+            </if>
+            <if test="d_desc != null" >
+                d_desc,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="user_id != null" >
+                #{user_id,jdbcType=VARCHAR},
+            </if>
+            <if test="count != null" >
+                #{count,jdbcType=VARCHAR},
+            </if>
+            <if test="d_type != null" >
+                #{d_type,jdbcType=VARCHAR},
+            </if>
+            <if test="d_name != null" >
+                #{d_name,jdbcType=VARCHAR},
+            </if>
+            <if test="d_desc != null" >
+                #{d_desc,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="upadtedisease" parameterType="java.util.HashMap">
+        update data_health_info_disease set
+        <trim suffixOverrides="," >
+            <if test="user_id != null and user_id !='' " >
+                user_id=#{user_id,jdbcType=VARCHAR},
+            </if>
+            <if test="count != null and count !='' " >
+                count=#{count,jdbcType=VARCHAR},
+            </if>
+            <if test="d_type != null and d_type !='' " >
+                d_type=#{d_type,jdbcType=VARCHAR},
+            </if>
+            <if test="d_name != null and d_name !='' " >
+                d_name=#{d_name,jdbcType=VARCHAR},
+            </if>
+            <if test="d_desc != null and d_desc !='' " >
+                d_desc=#{d_desc,jdbcType=VARCHAR},
+            </if>
+
+        </trim>
+
+        where 1=1
+        <if test="user_id !=null and user_id !='' ">
+            and user_id= #{user_id,jdbcType=INTEGER}
+        </if>
+
+    </update>
+    <delete id="deletedisease" parameterType="java.util.HashMap">
+
+        delete from data_health_info_disease
+        where
+        user_id=#{user_id,jdbcType=VARCHAR}
+
+    </delete>
+    <select id="selectudisease" parameterType="java.util.HashMap" resultType= "java.util.HashMap">
+        select d.* , u.basic_name from data_health_info_disease d,data_basic_user u
+        where 1=1
+        <if test="basic_id !=null">
+            and user_id= #{user_id,jdbcType=VARCHAR}
+        </if>
+
+
+    </select>
+
+
 </mapper>

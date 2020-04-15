@@ -74,4 +74,24 @@ public class ManagementController {
         Map<String, Object> map = JSON.parseObject(json);
         return basicService.selectuserinfo(map);
     }
+    @RequestMapping("/insertdisease")
+    public @ResponseBody Map<String,Object> insertdisease(@RequestBody String json){
+        Map<String, Object> map = JSON.parseObject(json);
+        return basicService.insertdisease(map);
+    }
+    @RequestMapping("/upadtedisease")
+    public @ResponseBody Map<String,Object> upadtedisease(@RequestBody String json){
+        Map<String, Object> map = JSON.parseObject(json);
+        return basicService.upadtedisease(map);
+    }
+    @RequestMapping("/deletedisease")
+    public @ResponseBody Map<String,Object> deletedisease(@RequestBody String json){
+        Map<String, Object> map = JSON.parseObject(json);
+        return basicService.deletedisease(map);
+    }@RequestMapping("/selectudisease")
+    public @ResponseBody Map<String,Object> selectudisease(@RequestBody String json){
+        Map<String, Object> map = JSON.parseObject(json);
+        return basicService.selectudisease(map);
+    }
+
 }

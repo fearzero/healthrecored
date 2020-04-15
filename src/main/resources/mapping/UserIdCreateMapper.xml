@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fear.healthrecord.mapper.UserIdCreateMapper" >
+    <insert id="insertUserId" parameterType="java.util.HashMap" >
+        insert into user_create
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="create_time != null" >
+                create_time,
+            </if>
+            <if test="uuid != null" >
+                uuid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="create_time != null" >
+                #{create_time,jdbcType=VARCHAR},
+            </if>
+            <if test="uuid != null" >
+                #{uuid,jdbcType=VARCHAR},
+            </if>
+
+        </trim>
+    </insert>
+    <update id="upadteUserId" parameterType="java.util.HashMap">
+        update user_create set
+        <trim suffixOverrides="," >
+            <if test="user_id != null and user_id !='' " >
+                user_id=#{user_id,jdbcType=VARCHAR},
+            </if>
+        </trim>
+
+        where 1=1
+        <if test="uuid !=null and uuid !='' ">
+            and uuid= #{uuid,jdbcType=INTEGER}
+        </if>
+    </update>
+    <select id="selectUserId"  resultType= "java.util.HashMap">
+        select count(*) as user_id from user_create
+
+
+
+    </select>
+
+</mapper>

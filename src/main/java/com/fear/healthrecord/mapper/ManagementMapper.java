@@ -18,4 +18,8 @@ public interface ManagementMapper {
     Map<String,Object> selectuserinfo(Map<String,Object> map);
     int deleteuser(Map<String,Object> map);
     int deleteuserinfo(Map<String,Object> map);
+    int insertdisease(Map<String,Object> map);
+    int upadtedisease(Map<String,Object> map);
+    int deletedisease(Map<String,Object> map);
+    Map<String,Object> selectudisease(Map<String,Object> map);
 }

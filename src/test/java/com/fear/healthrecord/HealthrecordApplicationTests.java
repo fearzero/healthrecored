@@ -14,7 +14,7 @@ class HealthrecordApplicationTests {
      @Autowired
      ManagementServiceImpl service;
     @Test
-    void contextLoads() {
+    void createuser() {
         Map<String,Object> map=new HashMap<>();
         Random random=new Random();
         for(int i=0;i<10;i++) {
