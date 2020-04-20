@@ -1,45 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.fear.healthrecord.mapper.SystemUserMapper" >
-    <insert id="registeruser" parameterType="java.util.HashMap" >
-        insert into system_login_user
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="sys_user_name != null" >
-                sys_user_name,
-            </if>
-            <if test="sys_user_password != null" >
-                sys_user_password,
-            </if>
-            <if test="sys_rank != null" >
-                sys_rank,
-            </if>
-            <if test="sys_status != null" >
-                sys_status,
-            </if>
 
-
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="sys_user_name != null" >
-                #{sys_user_name,jdbcType=VARCHAR},
-            </if>
-            <if test="sys_user_password != null" >
-                #{sys_user_password,jdbcType=VARCHAR},
-            </if>
-            <if test="sys_rank != null" >
-                #{sys_rank,jdbcType=INTEGER},
-            </if>
-            <if test="sys_status != null" >
-                #{sys_status,jdbcType=INTEGER},
-            </if>
-
-        </trim>
-    </insert>
-    <select id="loginuser" parameterType="java.util.HashMap" resultType= "java.util.HashMap">
-        select sys_id,sys_user_name,sys_user_password,sys_rank,sys_status  from system_login_user
-        where 1=1
+    <select id="selectSysUserInfo" parameterType="java.util.HashMap" resultType= "java.util.HashMap">
+        SELECT
+        u.sys_user_name,
+        i.real_name,
+        i.phone_num,
+        i.sex,
+        i.job,
+        i.birthday,
+        i.address,
+        i.email,
+        k.rank_name,
+        s.status_name
+        FROM
+        system_login_user u,
+        system_login_user_info i,
+        system_role_rank k,
+        system_role_status s
+        WHERE
+        u.sys_id = i.sys_id
+        AND k.rank_id = u.sys_rank
+        AND s.status_id = u.sys_status
         <if test="sys_user_name != null" >
-           and sys_user_name= #{sys_user_name,jdbcType=VARCHAR}
+            and u.sys_user_name= #{sys_user_name,jdbcType=VARCHAR}
         </if>
     </select>
 </mapper>

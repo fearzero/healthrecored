@@ -4,8 +4,10 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
+
 @Mapper
 @Repository
-public interface SystemUserMapper {
-    Map<String,Object> selectSysUserInfo(Map<String,Object> map);
+public interface UserSafeMapper {
+    int registeruser(Map<String,Object> map);
+    Map<String,Object> loginuser(Map<String,Object> map);
 }
