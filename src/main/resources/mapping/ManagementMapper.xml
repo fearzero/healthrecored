@@ -202,7 +202,7 @@
 
      </select>
     <select id="selectuserlist" parameterType="java.util.HashMap" resultType= "java.util.HashMap">
-        select basic_id,basic_name from data_basic_user
+        select user_id,basic_name from data_basic_user
         where 1=1
         <if test="basic_name !=null and basic_name !='' ">
             and basic_name= #{basic_name,jdbcType=VARCHAR}
@@ -318,10 +318,15 @@
 
     </delete>
     <select id="selectudisease" parameterType="java.util.HashMap" resultType= "java.util.HashMap">
-        select d.* , u.basic_name from data_health_info_disease d,data_basic_user u
+        select d.count,
+        d.d_type,
+        d.d_name,
+        d.d_desc,
+         u.basic_name from data_health_info_disease d,data_basic_user u
         where 1=1
-        <if test="basic_id !=null">
-            and user_id= #{user_id,jdbcType=VARCHAR}
+        and d.user_id=u.user_id
+        <if test="user_id !=null">
+            and d.user_id= #{user_id,jdbcType=VARCHAR}
         </if>
 
 

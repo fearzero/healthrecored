@@ -1,7 +1,7 @@
 package com.fear.healthrecord.service.impl;
 
 import com.fear.healthrecord.mapper.UserSafeMapper;
-import com.fear.healthrecord.myunitls.JwtUtil;
+import com.fear.healthrecord.myunitls.JWTUtils;
 import com.fear.healthrecord.service.UserSafeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,7 +47,7 @@ public class UserSafeServiceImpl implements UserSafeService {
         Map<String, Object> re=new HashMap<>();
         boolean f=result.get("sys_user_password").toString().equals(map.get("sys_user_password").toString());
         if(f) {
-            String jwt = JwtUtil.generateToken(mp.get("user_name").toString());
+            String jwt = JWTUtils.getToken(mp.get("user_name").toString());
             response.setHeader("Authorization",jwt);
             re.put("CODE", "200");
             re.put("MESSAGE", "success");
