@@ -17,7 +17,9 @@
                 sys_status,
             </if>
 
-
+            <if test="sign != null" >
+                sign,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="sys_user_name != null" >
@@ -32,14 +34,39 @@
             <if test="sys_status != null" >
                 #{sys_status,jdbcType=INTEGER},
             </if>
-
+            <if test="sign != null" >
+                #{sign,jdbcType=VARCHAR},
+            </if>
         </trim>
     </insert>
     <select id="loginuser" parameterType="java.util.HashMap" resultType= "java.util.HashMap">
-        select sys_id,sys_user_name,sys_user_password,sys_rank,sys_status  from system_login_user
+    select sys_id,sys_user_name,sys_user_password,sys_rank,sys_status,sign  from system_login_user
+    where 1=1
+    <if test="sys_user_name != null" >
+        and sys_user_name= #{sys_user_name,jdbcType=VARCHAR}
+    </if>
+</select>
+    <select id="selectSys_id" parameterType="java.util.HashMap" resultType= "java.util.HashMap">
+        select sys_id from system_login_user
         where 1=1
         <if test="sys_user_name != null" >
-           and sys_user_name= #{sys_user_name,jdbcType=VARCHAR}
+            and sys_user_name= #{sys_user_name,jdbcType=VARCHAR}
         </if>
     </select>
+    <insert id="insertSysUserInfo" parameterType="java.util.HashMap" >
+        insert into system_login_user_info
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="sys_id != null" >
+                sys_id,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+
+            <if test="sys_id != null" >
+                #{sys_id,jdbcType=INTEGER},
+            </if>
+
+        </trim>
+    </insert>
 </mapper>

@@ -23,8 +23,57 @@
         u.sys_id = i.sys_id
         AND k.rank_id = u.sys_rank
         AND s.status_id = u.sys_status
-        <if test="sys_user_name != null" >
-            and u.sys_user_name= #{sys_user_name,jdbcType=VARCHAR}
+        <if test="sign != null" >
+            and u.sign= #{sign,jdbcType=VARCHAR}
         </if>
     </select>
+    <select id="selectPWD" parameterType="java.util.HashMap" resultType= "java.util.HashMap">
+        SELECT
+        sys_user_password
+        FROM
+        system_login_user
+        WHERE
+        1=1
+         and
+         sign= #{sign,jdbcType=VARCHAR}
+
+    </select>
+    <update id="updatePWD" parameterType="java.util.HashMap">
+        update system_login_user set
+         sys_user_password=#{sys_user_password,jdbcType=VARCHAR}
+        where
+        sign= #{sign,jdbcType=VARCHAR}
+    </update>
+    <update id="updateSysUserInfo" parameterType="java.util.HashMap">
+        update system_login_user u,system_login_user_info i set
+        <trim suffixOverrides="," >
+            <if test="real_name != null and real_name !='' " >
+                i.real_name=#{real_name,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null and address !='' " >
+                i.address=#{address,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null and sex !='' " >
+                i.sex=#{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="job != null and job !='' " >
+                i.job=#{job,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null and birthday !='' " >
+                i.birthday=#{birthday,jdbcType=VARCHAR},
+            </if>
+            <if test="phone_num != null and phone_num !='' " >
+                i.phone_num=#{phone_num,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null and email !='' " >
+                i.email=#{email,jdbcType=VARCHAR},
+            </if>
+
+        </trim>
+
+        where 1=1
+       and u.sys_id=i.sys_id
+       and u.sign= #{sign,jdbcType=VARCHAR}
+
+    </update>
 </mapper>

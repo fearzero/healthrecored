@@ -9,5 +9,7 @@ import java.util.Map;
 @Repository
 public interface UserSafeMapper {
     int registeruser(Map<String,Object> map);
+    int insertSysUserInfo(Map<String,Object> map);
+    Map<String,Object> selectSys_id(Map<String,Object> map);
     Map<String,Object> loginuser(Map<String,Object> map);
 }

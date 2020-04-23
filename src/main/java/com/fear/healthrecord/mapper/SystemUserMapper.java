@@ -8,4 +8,7 @@ import java.util.Map;
 @Repository
 public interface SystemUserMapper {
     Map<String,Object> selectSysUserInfo(Map<String,Object> map);
+    Map<String,Object> selectPWD(Map<String,Object> map);
+    int updatePWD(Map<String,Object> map);
+    int updateSysUserInfo(Map<String,Object> map);
 }
