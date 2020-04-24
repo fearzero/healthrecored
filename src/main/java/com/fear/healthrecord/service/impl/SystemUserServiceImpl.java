@@ -2,11 +2,14 @@ package com.fear.healthrecord.service.impl;
 
 import com.fear.healthrecord.mapper.SystemUserMapper;
 import com.fear.healthrecord.service.SystemUserService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 @Service
 public class SystemUserServiceImpl implements SystemUserService {
@@ -92,6 +95,23 @@ public class SystemUserServiceImpl implements SystemUserService {
             resultMap.put("CODE","300");
             resultMap.put("MESSAGE","数据库访问失败");
         }
+        return resultMap;
+    }
+
+    @Override
+    public Map<String, Object> selectLogs(HttpServletRequest request, Map<String, Object> map) {
+        int pageNum=Integer.parseInt(map.get("pageNum").toString());
+        int pageSize=Integer.parseInt(map.get("pageSize").toString());
+        PageHelper.startPage(pageNum,pageSize);
+        Map<String, Object> requestMap1=new HashMap<>();
+        String sign=request.getHeader("sign");
+        requestMap1.put("sign",sign);
+        List<Map<String,Object>> list=mapper.selectLogs(requestMap1);
+        PageInfo<Map<String,Object>> pageInfo=new PageInfo<Map<String,Object>>(list);
+        Map<String,Object> resultMap=new HashMap<>();
+        resultMap.put("CODE","200");
+        resultMap.put("MESSAGE","成功");
+        resultMap.put("DATA",pageInfo);
         return resultMap;
     }
 

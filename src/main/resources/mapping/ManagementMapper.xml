@@ -329,7 +329,6 @@
 
 
     </select>
-
     <update id="clearuserinfo" parameterType="java.util.HashMap">
         update data_health_info_basic set
         height= "",

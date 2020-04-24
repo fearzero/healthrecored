@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface UserSafeService {
     Map<String, Object> registeruser(Map<String,Object> map);
-    Map<String,Object> loginuser(Map<String,Object> map , HttpServletResponse response);
+    Map<String,Object> loginuser(Map<String,Object> map ,HttpServletRequest request, HttpServletResponse response);
     Map<String,Object> outline(HttpServletRequest request);
 
 }

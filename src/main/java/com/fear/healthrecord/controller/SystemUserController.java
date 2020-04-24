@@ -35,4 +35,11 @@ public class SystemUserController {
         Map<String, Object> map = JSON.parseObject(json);
         return service.updateSysUserInfo(request,map);
     }
+    @RequestMapping("/selectLogs")
+    public @ResponseBody
+    Map<String,Object> selectLogs(HttpServletRequest request ,@RequestBody String json)
+    {
+        Map<String, Object> map = JSON.parseObject(json);
+        return service.selectLogs(request,map);
+    }
 }

@@ -76,4 +76,59 @@
        and u.sign= #{sign,jdbcType=VARCHAR}
 
     </update>
+    <insert id="insertLogs" parameterType="java.util.HashMap" >
+        insert into login_logs
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="user_name != null" >
+                user_name,
+            </if>
+            <if test="sign != null" >
+                sign,
+            </if>
+            <if test="ip_address != null" >
+                ip_address,
+            </if>
+            <if test="host_name != null" >
+                host_name,
+            </if>
+            <if test="login_time != null" >
+                login_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="user_name != null" >
+                #{user_name,jdbcType=VARCHAR},
+            </if>
+            <if test="sign != null" >
+                #{sign,jdbcType=VARCHAR},
+            </if>
+            <if test="ip_address != null" >
+                #{ip_address,jdbcType=VARCHAR},
+            </if>
+            <if test="host_name != null" >
+                #{host_name,jdbcType=VARCHAR},
+            </if>
+            <if test="login_time != null" >
+                #{login_time,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectLogs" parameterType="java.util.HashMap" resultType= "java.util.HashMap">
+        SELECT
+       ip_address,
+       host_name,
+       login_time,
+       user_name
+        FROM
+        login_logs
+        WHERE
+        1=1
+         and
+         sign= #{sign,jdbcType=VARCHAR}
+         ORDER BY
+         login_time
+         DESC
+
+    </select>
+
 </mapper>

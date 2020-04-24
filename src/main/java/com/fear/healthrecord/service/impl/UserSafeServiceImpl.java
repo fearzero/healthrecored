@@ -1,5 +1,6 @@
 package com.fear.healthrecord.service.impl;
 
+import com.fear.healthrecord.mapper.SystemUserMapper;
 import com.fear.healthrecord.mapper.UserSafeMapper;
 import com.fear.healthrecord.myunitls.JWTUtils;
 import com.fear.healthrecord.myunitls.MD5Utils;
@@ -10,12 +11,16 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 @Service
 public class UserSafeServiceImpl implements UserSafeService {
     @Autowired
     UserSafeMapper mapper;
+    @Autowired
+    SystemUserMapper systemUserMapper;
     @Override
     public Map<String, Object> registeruser(Map<String, Object> mp) {
         Map<String, Object> requestMap1=new HashMap<>();
@@ -46,7 +51,7 @@ public class UserSafeServiceImpl implements UserSafeService {
     }
 
     @Override
-    public Map<String, Object> loginuser(Map<String, Object> mp, HttpServletResponse response) {
+    public Map<String, Object> loginuser(Map<String, Object> mp, HttpServletRequest request,HttpServletResponse response) {
         Map<String, Object> map=new HashMap<>();
         map.put("sys_user_name",mp.get("user_name"));
         map.put("sys_user_password",mp.get("user_password"));
@@ -63,6 +68,17 @@ public class UserSafeServiceImpl implements UserSafeService {
             re.put("MESSAGE", "success");
             re.put("TOKEN",jwt);
             re.put("SIGN",sign);
+            String ip_address=request.getRemoteAddr();
+            String host_name=request.getRemoteHost();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            String login_time=df.format(new Date());// new Date()为获取当前系统时间
+            Map<String, Object> logsMap=new HashMap<>();
+            logsMap.put("user_name",mp.get("user_name"));
+            logsMap.put("sign",sign);
+            logsMap.put("ip_address",ip_address);
+            logsMap.put("host_name",host_name);
+            logsMap.put("login_time",login_time);
+          systemUserMapper.insertLogs(logsMap);
         }
         else
         {

@@ -27,11 +27,11 @@ public class UserSafeController {
     }
     @CrossOrigin
     @RequestMapping("/login")
-   public @ResponseBody Map<String, Object>  login (@RequestBody  String json, HttpServletResponse response)
+   public @ResponseBody Map<String, Object>  login (@RequestBody  String json,HttpServletRequest request, HttpServletResponse response)
     {
         Map<String, Object> mp = JSON.parseObject(json);
 
-        return service.loginuser(mp,response);
+        return service.loginuser(mp,request,response);
     }
     @RequestMapping("/out")
     public @ResponseBody Map<String, Object>  outline (HttpServletRequest request)
