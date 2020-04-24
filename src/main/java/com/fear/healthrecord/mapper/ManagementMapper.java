@@ -23,4 +23,6 @@ public interface ManagementMapper {
     int deletedisease(Map<String,Object> map);
     Map<String,Object> selectudisease(Map<String,Object> map);
 
+    int clearuserinfo(Map<String,Object> map);
+    int cleardisease(Map<String,Object> map);
 }

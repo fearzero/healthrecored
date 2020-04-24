@@ -156,22 +156,26 @@ public class ManagementServiceImpl implements BasicService {
     @Override
     public Map<String, Object> deleteuser(Map<String, Object> map) {
         int basic_id=Integer.parseInt(map.get("user_id").toString());
+        String user_id =map.get("user_id").toString();
+        map.put("user_id",user_id);
         map.put("basic_id",basic_id);
         Map<String,Object> result =new HashMap<>();
         try {
             managementMapper.deleteuser(map);
             try {
                 managementMapper.deleteuserinfo(map);
+                managementMapper.deletedisease(map);
             }
            catch (Exception e){
 
            }
-            result.put("code","200");
-            result.put("message","成功");
+            result.put("CODE","200");
+            result.put("MESSAGE","成功");
         }catch (Exception e){
-            result.put("code","300");
-            result.put("message","失败");
+            result.put("CODE","300");
+            result.put("MESSAGE","失败");
         }
+
 
         return result;
 
@@ -181,12 +185,12 @@ public class ManagementServiceImpl implements BasicService {
     public Map<String, Object> deleteuserinfo(Map<String, Object> map) {
         Map<String,Object> result =new HashMap<>();
         try {
-            managementMapper.deleteuserinfo(map);
-            result.put("code","200");
-            result.put("message","成功");
+            managementMapper.clearuserinfo(map);
+            result.put("CODE","200");
+            result.put("MESSAGE","成功");
         }catch (Exception e){
-            result.put("code","300");
-            result.put("message","失败");
+            result.put("CODE","300");
+            result.put("MESSAGE","失败");
         }
 
         return result;
@@ -238,7 +242,7 @@ public class ManagementServiceImpl implements BasicService {
 
         Map<String,Object> result =new HashMap<>();
         try {
-            managementMapper.deletedisease(map);
+            managementMapper.cleardisease(map);
             result.put("CODE","200");
             result.put("MESSAGE","成功");
         }catch (Exception e){

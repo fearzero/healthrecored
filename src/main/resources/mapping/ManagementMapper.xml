@@ -182,7 +182,7 @@
         </if>
 
     </update>
-     <select id="selectuser" parameterType="java.util.HashMap" resultType= "java.util.HashMap">
+    <select id="selectuser" parameterType="java.util.HashMap" resultType= "java.util.HashMap">
 	select basic_name,
 	    basic_age,
          basic_sex,
@@ -244,8 +244,6 @@
         user_id=#{user_id,jdbcType=VARCHAR}
 
     </delete>
-
-
     <insert id="insertdisease" parameterType="java.util.HashMap" >
         insert into data_health_info_disease
         <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -332,6 +330,34 @@
 
     </select>
 
+    <update id="clearuserinfo" parameterType="java.util.HashMap">
+        update data_health_info_basic set
+        height= "",
+        weight= "",
+        lung_capacity="",
+        s_blood_pressure="",
+        d_blood_pressure=""
+        where 1=1
+        <if test="user_id !=null and user_id !='' ">
+            and user_id= #{user_id,jdbcType=VARCHAR}
+        </if>
+        <if test="count!=null and count !='' ">
+            and count= #{count,jdbcType=VARCHAR}
+        </if>
 
+    </update>
+    <update id="cleardisease" parameterType="java.util.HashMap">
+        update data_health_info_disease set
+          user_id="",
+          count="",
+         d_type="",
+         d_name="",
+         d_desc=""
+        where 1=1
+        <if test="user_id !=null and user_id !='' ">
+            and user_id= #{user_id,jdbcType=INTEGER}
+        </if>
+
+    </update>
 
 </mapper>
