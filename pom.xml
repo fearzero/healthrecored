@@ -10,7 +10,8 @@
     </parent>
     <groupId>com.fear</groupId>
     <artifactId>healthrecord</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
     <name>healthrecord</name>
     <description>Demo project for Spring Boot</description>
 
@@ -26,6 +27,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
@@ -57,12 +65,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-<!--        redis依赖-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-            <version>2.0.4.RELEASE</version>
-        </dependency>
+
 
         <dependency>
             <groupId>redis.clients</groupId>
@@ -109,6 +112,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+
     </build>
 
 </project>
